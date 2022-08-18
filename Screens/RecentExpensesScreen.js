@@ -1,14 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 
 import { globalStyles } from "../constants/styles";
+import { ExpensesOutput } from "../components/expensesOutput/ExpensesOutput";
 
 export const RecentExpensesScreen = ({}) => {
 
     return (
-        <View style={styles.rootCont}>
-        {/* // <View> */}
-            <Text>Recent Expenses Here</Text>
-        </View>
+            <ExpensesOutput timePeriod="last 7 days" />
     )
 }
 

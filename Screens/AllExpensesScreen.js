@@ -5,10 +5,7 @@ import { ExpensesOutput } from "../components/expensesOutput/ExpensesOutput";
 export const AllExpensesScreen = ({}) => {
 
     return(
-        <View>
-            <Text>All Expenses Here</Text>
-            <ExpensesOutput expenses={100} />
-        </View>
+            <ExpensesOutput timePeriod="all" />
     )
 }
 
