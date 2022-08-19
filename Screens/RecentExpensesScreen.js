@@ -13,8 +13,6 @@ export const RecentExpensesScreen = ({}) => {
 const styles = StyleSheet.create({
     rootCont: {
         flex: 1,
-        // backgroundColor: '#052010'
-        // backgroundColor: globalStyles.colors.primary700,
         backgroundColor: globalStyles.colors.primary800,
     }
 });
