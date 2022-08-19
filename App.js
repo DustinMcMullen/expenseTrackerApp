@@ -19,9 +19,6 @@ function ExpensesTabs () {
   return (
     <BottomTabs.Navigator
     screenOptions={ ({navigation}) => ({
-      // contentStyle: {backgroundColor: "red"},
-      contentStyle: {backgroundColor: globalStyles.colors.primary900},
-
       headerStyle: { backgroundColor: globalStyles.colors.primary700 },
       tabBarStyle: { backgroundColor: globalStyles.colors.primary700 },
       headerTintColor: 'white',
@@ -64,7 +61,12 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: globalStyles.colors.primary700 },
+            headerTintColor: "white"
+          }}
+        >
           <Stack.Screen
             name="ExpensesOverview"
             component={ExpensesTabs}
@@ -77,6 +79,7 @@ export default function App() {
             component={ManageExpense}
             options={{
               title: "Manage Expense",
+              presentation: "modal"
             }}
           />
         </Stack.Navigator>
