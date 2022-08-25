@@ -1,5 +1,6 @@
 import { useLayoutEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { CustomButton } from "../components/UI/CustomButton";
 
 import { IconButton } from "../components/UI/IconButton";
 import { globalStyles } from "../constants/styles";
@@ -16,21 +17,40 @@ export const ManageExpense = ({route, navigation}) => {
     }, [navigation, isEditing] );
 
     function deleteHandler () {
-        console.log("Delete expense triggered")
+        console.log("Delete expense triggered");
+    }
+
+    function cancelHandler () {
+        console.log("Cancel expense triggered");
+    }
+
+    function confirmHandler () {
+        console.log("Confirm expense triggered");
     }
 
     return (
         <View style={styles.rootCont}>
-            <View style={styles.deleteCont}>
-                {isEditing && (
-                    <IconButton
-                        iconName="trash"
-                        color={globalStyles.colors.primary200}
-                        size={36}
-                        onPress={deleteHandler}
-                    />
-                )}
+            <View style={styles.buttonCont}>
+                <CustomButton
+                    mode="flat"
+                    onPress={cancelHandler}
+                    style={styles.button}
+                >Cancel</CustomButton>
+                <CustomButton
+                    onPress={confirmHandler}
+                    style={styles.button}
+                >{isEditing ? "Update" : "Add"}</CustomButton>
             </View>
+                {isEditing && (
+                    <View style={styles.deleteCont}>
+                        <IconButton
+                            iconName="trash"
+                            color={globalStyles.colors.primary200}
+                            size={36}
+                            onPress={deleteHandler}
+                        />
+                    </View>
+                )}
         </View>
     )
 }
@@ -40,6 +60,15 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 24,
         backgroundColor: globalStyles.colors.primary400,
+    },
+    buttonCont: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    button: {
+        minWidth: 120,
+        marginHorizontal: 8
     },
     deleteCont: {
         marginTop: 16,
