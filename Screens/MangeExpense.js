@@ -17,15 +17,15 @@ export const ManageExpense = ({route, navigation}) => {
     }, [navigation, isEditing] );
 
     function deleteHandler () {
-        console.log("Delete expense triggered");
+        navigation.goBack();
     }
 
     function cancelHandler () {
-        console.log("Cancel expense triggered");
+        navigation.goBack();
     }
 
     function confirmHandler () {
-        console.log("Confirm expense triggered");
+        navigation.goBack();
     }
 
     return (

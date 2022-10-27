@@ -5,16 +5,7 @@ import { globalStyles } from "../../constants/styles";
 
 export const ExpensesOutput = ({expenses, timePeriod}) => {
 
-    const DUMMYEXPENSES = [
-        {id: "e1", title: "Ice Cream", amount: 12.98, date: new Date("2022-08-17")},
-        {id: "e2", title: "clothes", amount: 42.73, date: new Date("2022-08-17")},
-        {id: "e3", title: "house payment", amount: 1890.22, date: new Date("2022-07-17")},
-        {id: "e4", title: "car payment", amount: 265.47, date: new Date("2022-07-17")},
-        {id: "e5", title: "book", amount: 13.29, date: new Date("2022-07-17")}
-    ];
-
-    // const sumOfExpenses = expenses.reduce( (sum, currentItem) => {
-    const sumOfExpenses = DUMMYEXPENSES.reduce( (sum, currentItem) => {
+    const sumOfExpenses = expenses.reduce( (sum, currentItem) => {
         return sum + currentItem.amount
     }, 0  );
 
@@ -31,7 +22,8 @@ export const ExpensesOutput = ({expenses, timePeriod}) => {
                 <Text style={styles.expensesSum}>${sumOfExpenses.toFixed(2)}</Text>
             </View>
             <FlatList
-                data={DUMMYEXPENSES}
+                // data={DUMMYEXPENSES}
+                data={expenses}
                 renderItem={renderExpenses}
                 keyExtractor={(item) => item.id}
             />
