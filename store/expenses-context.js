@@ -12,7 +12,7 @@ const DUMMY_EXPENSES = [
 export const ExpensesContext = createContext({
     expenses: [],
     addExpense: ({description, amount, date}) => {},
-    deleteExprense: (id) => {},
+    deleteExpense: (id) => {},
     updateExpense: (id, {description, amount, date}) => {}
 });
 
