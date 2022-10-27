@@ -5,6 +5,7 @@ import { CustomButton } from "../components/UI/CustomButton";
 import { IconButton } from "../components/UI/IconButton";
 import { globalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expenses-context";
+import { ExpenseForm } from "../components/manageExpense/ExpenseForm";
 
 export const ManageExpense = ({route, navigation}) => {
     const expensesCtx = useContext(ExpensesContext);
@@ -47,6 +48,7 @@ export const ManageExpense = ({route, navigation}) => {
 
     return (
         <View style={styles.rootCont}>
+        <ExpenseForm />
             <View style={styles.buttonCont}>
                 <CustomButton
                     mode="flat"
