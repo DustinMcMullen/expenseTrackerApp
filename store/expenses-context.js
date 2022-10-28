@@ -1,17 +1,9 @@
 import { createContext, useReducer } from "react";
 
-
-const DUMMY_EXPENSES = [
-    {id: "e1", title: "Ice Cream", amount: 12.98, date: new Date("2022-08-17")},
-    {id: "e2", title: "clothes", amount: 42.73, date: new Date("2022-08-17")},
-    {id: "e3", title: "house payment", amount: 1890.22, date: new Date("2022-07-17")},
-    {id: "e4", title: "car payment", amount: 265.47, date: new Date("2022-07-17")},
-    {id: "e5", title: "book", amount: 13.29, date: new Date("2022-07-17")}
-];
-
 export const ExpensesContext = createContext({
     expenses: [],
     addExpense: ({description, amount, date}) => {},
+    setExpenses: (expenses) => {},
     deleteExpense: (id) => {},
     updateExpense: (id, {description, amount, date}) => {}
 });
@@ -19,8 +11,12 @@ export const ExpensesContext = createContext({
 function expensesReducer(state, action) {
     switch(action.type) {
         case "ADD":
-            const id = Date.now().toString() + Math.random().toString();
-            return [{...action.payload, id: id}, ...state]
+            return [action.payload, ...state];
+        case "SET":
+            // reverse the order because firebase will return them in chronological order.
+            // We want the data in order of newest first.
+            const reversed = action.payload.reverse();
+            return reversed;
         case "UPDATE":
             const expenseToUpdateIndex = state.findIndex((expense) => expense.id === action.payload.id);
             const expenseToUpdate = state[expenseToUpdateIndex];
@@ -36,10 +32,14 @@ function expensesReducer(state, action) {
 }
 
 function ExpensesContextProvider({children}) {
-    const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES);
+    const [expensesState, dispatch] = useReducer(expensesReducer, []);
 
     function addExpense(expenseData) {
         dispatch({type: "ADD", payload: expenseData});
+    }
+
+    function setExpenses(expenses) {
+        dispatch({type: "SET", payload: expenses});
     }
 
     function deleteExpense(id) {
@@ -53,6 +53,7 @@ function ExpensesContextProvider({children}) {
     const value = {
         expenses: expensesState,
         addExpense: addExpense,
+        setExpenses: setExpenses,
         deleteExpense: deleteExpense,
         updateExpense: updateExpense
     };

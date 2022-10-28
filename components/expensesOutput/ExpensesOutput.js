@@ -22,7 +22,6 @@ export const ExpensesOutput = ({expenses, timePeriod}) => {
                 <Text style={styles.expensesSum}>${sumOfExpenses.toFixed(2)}</Text>
             </View>
             <FlatList
-                // data={DUMMYEXPENSES}
                 data={expenses}
                 renderItem={renderExpenses}
                 keyExtractor={(item) => item.id}
